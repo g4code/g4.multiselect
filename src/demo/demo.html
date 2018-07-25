@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head> 
+    <meta charset="UTF-8"> 
+    <title>Demo</title> 
+    <script src="../js/multiselect.js"></script> 
+</head> 
+<body>
+ <h1>Demo</h1>
+ <form> 
+    <div> 
+        <h3>With reset button</h3>
+        <select class="js_multiselect hidden_select" multiple="multiple" name="optionsA[]"> 
+            <option value="js_reset">No options</option> 
+            <option value="option_A1">Option A1</option> 
+            <option value="option_A2">Option A2</option> 
+            <option value="option_A3">Option A3</option> 
+        </select> 
+    </div> 
+    <br> 
+    <div> 
+        <h3>Without reset button</h3>
+        <select class="js_multiselect hidden_select" multiple="multiple" name="optionsB[]"> 
+            <option value="option_B1">Option B1</option> 
+            <option value="option_B2">Option B2</option> 
+            <option value="option_B3">Option B3</option> 
+        </select> 
+    </div> 
+    <input type="submit" value="submit"> 
+</form>  
+<script> 
+    new G4.multiselect().make();
+ </script>
+ </body> 
+</html>
