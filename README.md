@@ -9,7 +9,9 @@ g4.multiselect
 
 ## Usage
 
-
+1. Add "js_multiselect" class to select element
+2. new Multiselect().make()
+3. add "js_reset" class optionally to reset option
 
 ## License
 

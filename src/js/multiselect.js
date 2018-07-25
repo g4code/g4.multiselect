@@ -57,7 +57,7 @@
                     return option.text
                 })
                 .reduce(function(prev, next){
-                    return prev + ',' + next
+                    return prev + ', ' + next
                 }, '')
                 .replace(/^,/, '');
             if(selectedOptions.length === 0 && resetOptionText){
