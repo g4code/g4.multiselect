@@ -141,34 +141,18 @@
         }
     };
 
-    /**
-     * Singleton instance
-     */
-    Multiselect.instance = null;
-
-    /**
-     * Singleton initiation
-     */
-    Multiselect.getInstance = function() {
-
-        if (this.instance === null) {
-            this.instance = new Multiselect();
-        }
-        return this.instance;
-    };
-
-    if ((typeof module != 'undefined') && (module.exports)) { // Node Module
-
-        module.exports = Multiselect.getInstance();
-
-    } else if (typeof define != 'undefined' && define.hasOwnProperty('amd') && define.amd) { // RequireJS AMD
-
+    if (typeof define != 'undefined' && define.hasOwnProperty('amd') && define.amd) { // RequireJS AMD
         define(function(){
-            return Multiselect.getInstance();
+            return Multiselect;
         });
+    }
+    else if ((typeof module != 'undefined') && (module.exports)) { // Node Module
+        module.exports = Multiselect;
+    }
+    else if (typeof window != 'undefined') { // Fall back to attaching to window
+        window.G4 = typeof G4 != "undefined" ? G4 : {};
+        window.G4.multiselect = typeof G4.multiselect != "undefined" ? G4.multiselect : {};
+        window.G4.multiselect =  Multiselect;
+    }
 
-    } else if (typeof window != 'undefined') { // Fall back to attaching to window
-
-        window.Multiselect = Multiselect.getInstance();
-    };
 }.call(this));
