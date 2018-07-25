@@ -1,0 +1,18 @@
+{
+  "name": "g4.multiselect",
+  "version": "0.0.1",
+  "description": "g4.multiselect node.js library",
+  "main": "./lib/g4.multiselect.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/g4code/g4.multiselect"
+  },
+  "keywords": [
+    "g4.multiselect"
+  ],
+  "author": "G4 Code <office@g4code.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/g4code/g4.multiselect/issues"
+  }
+}
