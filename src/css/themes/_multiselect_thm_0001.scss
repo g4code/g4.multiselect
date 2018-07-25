@@ -1,0 +1,9 @@
+/*===================================================
+  Multiselect custom - theme 0001
+===================================================*/
+
+$multiselect_bg_color                         : #f0f0f0;
+$multiselect_list_link_text_color             : #9a9999;
+$multiselect_list_item_bg_color_selected      : #d7d7d7;
+
+@include multiselect();

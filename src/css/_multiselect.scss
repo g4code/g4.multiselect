@@ -1,0 +1,54 @@
+/*===================================================
+  Multiselect custom
+===================================================*/
+
+//hide default multiselect
+.hidden_select {
+    display: none;
+}
+
+.multiselect_custom {
+    position: relative;
+
+    .multiselect_button {
+        display: block;
+        border: none;
+        padding: 0 25px 0 13px;
+        width: 100%;
+    }
+
+    .multiselect_selected {
+        display: block;
+        height: 36px;
+        line-height: 36px;
+        max-width: 90%;
+        overflow: hidden;
+        text-align: left;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .multiselect_list {
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        top: 100%;
+        transition: all .25s ease;
+        width: 100%;
+        z-index: 15;
+    }
+
+    .open {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .multiselect_list_link {
+        display: block;
+        padding: 10px 6px;
+    }
+
+    .multiselect_list_item {
+        transition: background-color .25s ease;
+    }
+}

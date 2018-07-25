@@ -1,0 +1,37 @@
+/*===================================================
+  Multiselect custom mixin
+===================================================*/
+
+$multiselect_bg_color                         : null !default;
+$multiselect_list_link_text_color             : null !default;
+$multiselect_list_item_bg_color_selected      : null !default;
+
+@mixin multiselect {
+
+    .multiselect_custom {
+
+        .multiselect_button {
+            display: block;
+            background-color: $multiselect_bg_color;
+        }
+
+        .multiselect_list {
+            background-color: $multiselect_bg_color;
+        }
+
+        .multiselect_list_link {
+            color: $multiselect_list_link_text_color;
+        }
+
+        .multiselect_list_item {
+
+            &:hover {
+                background-color: $multiselect_list_item_bg_color_selected;
+            }
+        }
+
+        .selected {
+            background-color: $multiselect_list_item_bg_color_selected;
+        }
+    }
+}
