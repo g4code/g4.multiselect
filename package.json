@@ -1,6 +1,6 @@
 {
   "name": "g4.multiselect",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "g4.multiselect node.js library",
   "main": "./lib/g4.multiselect.js",
   "repository": {
