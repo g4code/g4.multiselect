@@ -18,6 +18,7 @@
                 this.attachEventListeners(this.selectBoxes[i]);
             }
             document.getElementsByTagName('body')[0].addEventListener('click', this.closeOtherMultiselectOptions);
+            document.querySelector("[data-key='js_close_select']").addEventListener('click', this.closeOtherMultiselectOptions);
         },
 
         createMultiSelectContent: function(selectBox, order)
