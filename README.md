@@ -1,7 +1,7 @@
-g4.multiselect
+g4code.multiselect
 ======
 
-> g4.multiselect - [nodejs](http://nodejs.org) library
+> g4code.multiselect - [nodejs](http://nodejs.org) library
 
 ## Install
 
