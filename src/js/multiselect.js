@@ -18,7 +18,6 @@
                 this.attachEventListeners(this.selectBoxes[i]);
             }
             document.getElementsByTagName('body')[0].addEventListener('click', this.closeOtherMultiselectOptions);
-            document.querySelector("[data-key='js_close_select']").addEventListener('click', this.closeOtherMultiselectOptions);
         },
 
         createMultiSelectContent: function(selectBox, order)
@@ -76,9 +75,16 @@
 
             var options   = contentHolder.querySelectorAll('li');
             for (var i = 0; i < options.length; i++) {
-                options[i].dataset.key === 'js_reset'
-                    ? options[i].addEventListener('click', this.resetOptions.bind(this, options, selectBox))
-                    : options[i].addEventListener('click', this.toggleOption.bind(this, options[i]));
+                switch (options[i].dataset.key) {
+                    case 'js_reset':
+                        options[i].addEventListener('click', this.resetOptions.bind(this, options, selectBox));
+                        break;
+                    case 'js_close_multiselect':
+                        options[i].addEventListener('click', this.closeOtherMultiselectOptions);
+                        break;
+                    default:
+                        options[i].addEventListener('click', this.toggleOption.bind(this, options[i]));
+                }
             }
         },
 
