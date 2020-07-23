@@ -5,13 +5,18 @@ g4code.multiselect
 
 ## Install
 
-    $ npm install g4.multiselect
+    $ npm install g4code.multiselect
 
 ## Usage
 
 1. Add "js_multiselect g4_multiselect" classes to select element
 2. new G4.multiselect().make()
-3. add "js_reset" class optionally to reset option
+3. add "js_reset" value optionally to reset option
+4. add "js_close_multiselect" value optionally to add close option inside select box
+
+## Visual example
+![Alt text](src/assets/multiselect.png?raw=true "Multiselect")
+
 
 ## License
 
