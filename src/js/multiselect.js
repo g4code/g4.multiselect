@@ -16,11 +16,6 @@
             for (var i = 0; i < this.selectBoxes.length; i++) {
                 this.createMultiSelectContent(this.selectBoxes[i],i);
                 this.attachEventListeners(this.selectBoxes[i]);
-
-                // if (this.selectBoxes[i].hasAttribute('multiple')) {
-                // } else {
-                //     this.attachSelectEventListeners(this.selectBoxes[i])
-                // }
             }
             document.getElementsByTagName('body')[0].addEventListener('click', this.closeOtherMultiselectOptions);
         },
