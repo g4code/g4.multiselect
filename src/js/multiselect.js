@@ -73,7 +73,19 @@
 
             button.addEventListener('click', this.toggleOptionsList.bind(this, contentHolder));
 
-            var options   = contentHolder.querySelectorAll('li');
+            var options = contentHolder.querySelectorAll('li');
+
+            selectBox.hasAttribute('multiple') ? this.listenersSelectMultiple(options, selectBox) : this.listenersSelectClassic(options);
+        },
+
+        listenersSelectClassic: function(options) {
+
+            for (var i = 0; i < options.length; i++) {
+                options[i].addEventListener('click', this.toggleOptionSelect.bind(this, options[i], options));
+            }
+        },
+
+        listenersSelectMultiple: function(options, selectBox) {
             for (var i = 0; i < options.length; i++) {
                 switch (options[i].dataset.key) {
                     case 'js_reset':
@@ -83,7 +95,7 @@
                         options[i].addEventListener('click', this.closeOtherMultiselectOptions);
                         break;
                     default:
-                        options[i].addEventListener('click', this.toggleOption.bind(this, options[i]));
+                        options[i].addEventListener('click', this.toggleOptionMultiselect.bind(this, options[i]));
                 }
             }
         },
@@ -119,11 +131,21 @@
                 });
         },
 
-        toggleOption: function(option, event)
+        toggleOptionMultiselect: function(option, event)
         {
             event.stopPropagation();
             option.classList.toggle('selected');
             this.updateSelectBox(option)
+        },
+
+        toggleOptionSelect: function(option, options, event) {
+            event.stopPropagation();
+            options.forEach(function(item) {
+                item.classList.remove('selected');
+            })
+            option.classList.add('selected');
+            this.updateSelectBox(option);
+            this.closeOtherMultiselectOptions();
         },
 
         updateSelectBox: function(option)
