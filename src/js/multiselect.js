@@ -29,9 +29,11 @@
         {
             var allOptions = selectBox.options;
             var selectedOptions = this.getSelectedOptions(allOptions);
+            var selectedOptionsText = selectedOptions.text != undefined ? selectedOptions.text : selectedOptions;
+            var selectedOptionsValues = selectedOptions.values != undefined ? selectedOptions.values.toLocaleLowerCase() : selectedOptions;
 
             var html = '<div data-order="' + order +'" class="multiselect_custom js_multiselect_wrapper">';
-            html += '<button type="button" title="' + selectedOptions +'" class="js_multiselect_button multiselect_button"><span class="multiselect_selected">' + selectedOptions +'</span></button>';
+            html += '<button type="button" title="'+ selectedOptionsText +'" class="js_multiselect_button multiselect_button" data-selected="'+ selectedOptionsValues  +'"><span class="multiselect_selected">' + selectedOptionsText +'</span></button>';
             html += '<ul class="multiselect_list js_multiselect_list_holder">';
             for (var i = 0; i < allOptions.length; i++) {
                 var selectedClassPart = allOptions[i].selected ? ' selected">' : '">';
@@ -46,6 +48,18 @@
         getSelectedOptions: function(allOptions)
         {
             var resetOptionText = false;
+            var selectedValues = Array.apply(null, allOptions)
+                .filter(function(option) {
+                    return option.selected;
+                })
+                .map(function(option) {
+                    return option.value;
+                })
+                .reduce(function(prev, next){
+                    return prev + ', ' + next
+                }, '')
+                .replace(/^,/, '');
+
             var selectedOptions = Array.apply(null, allOptions)
                 .filter(function(option){
                     if(option.value === 'js_reset'){
@@ -60,10 +74,15 @@
                     return prev + ', ' + next
                 }, '')
                 .replace(/^,/, '');
+
             if(selectedOptions.length === 0 && resetOptionText){
                 return resetOptionText;
             }
-            return selectedOptions;
+            
+            return {
+                text: selectedOptions,
+                values: selectedValues
+            }
         },
 
         attachEventListeners: function(selectBox)
@@ -152,21 +171,21 @@
         {
             var order = option.closest('.js_multiselect_wrapper').dataset.order;
             var key =  option.dataset.key;
-
             var selectOptionForUpdate = Array.apply(null, this.selectBoxes.item(order).options)
                 .filter(function(option){
                     return option.value === key
                 });
             selectOptionForUpdate[0].selected = !selectOptionForUpdate[0].selected;
-            this.updateMultiSelectButton(this.selectBoxes.item(order))
+            this.updateMultiSelectButton(this.selectBoxes.item(order));
         },
 
         updateMultiSelectButton: function(selectBox)
         {
             var selectedOptions = this.getSelectedOptions(selectBox.options);
             var button = selectBox.nextElementSibling.querySelector('.js_multiselect_button');
-            button.querySelector('span').innerHTML = selectedOptions;
-            button.title = selectedOptions;
+            button.querySelector('span').innerHTML = selectedOptions.text != undefined ? selectedOptions.text : selectedOptions;
+            button.title = selectedOptions.text != undefined ? selectedOptions.text : selectedOptions;
+            button.setAttribute('data-selected', selectedOptions.values != undefined ? selectedOptions.values.toLocaleLowerCase() : selectedOptions);
         }
     };
 
