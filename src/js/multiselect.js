@@ -1,8 +1,8 @@
 ;(function() {
 
-    function Multiselect(closeMultiselectCallback = undefined) {
+    function Multiselect(callback = undefined) {
         this.selectBoxes = document.querySelectorAll('select.js_multiselect');
-        this.closeMultiSelectCallback = closeMultiselectCallback;
+        this.updateSelectCallback = callback;
         if(this.selectBoxes.length === 0){
             throw "Select boxes not exist";
         }
@@ -134,13 +134,13 @@
         toggleOptionsList: function(contentHolder, event)
         {
             if(!contentHolder.classList.contains('open')){
-                this.closeOtherMultiselectOptions(event)
+                this.closeOtherMultiselectOptions()
             }
             event.stopPropagation();
             contentHolder.classList.toggle('open');
         },
 
-        closeOtherMultiselectOptions: function(event)
+        closeOtherMultiselectOptions: function()
         {
             Array.apply(null, document.getElementsByClassName('js_multiselect_list_holder'))
                 .filter(function(holder){
@@ -149,19 +149,13 @@
                 .map(function(holder){
                     return holder.classList.remove("open");
                 });
-          
-            if (!event.currentTarget.classList.contains('js_multiselect_button')) {
-                if (typeof this.closeMultiSelectCallback === 'function') {
-                    this.closeMultiSelectCallback();
-                }
-            }
         },
 
         toggleOptionMultiselect: function(option, event)
         {
             event.stopPropagation();
             option.classList.toggle('selected');
-            this.updateSelectBox(option)
+            this.updateSelectBox(option);
         },
 
         toggleOptionSelect: function(option, options, event) {
@@ -171,7 +165,11 @@
             })
             option.classList.add('selected');
             this.updateSelectBox(option);
-            this.closeOtherMultiselectOptions(event);
+            this.closeOtherMultiselectOptions();
+
+            if (typeof this.updateSelectCallback === 'function') {
+                this.updateSelectCallback();
+            }
         },
 
         updateSelectBox: function(option)
