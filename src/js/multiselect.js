@@ -1,6 +1,9 @@
 ;(function() {
 
-    function Multiselect(callback = undefined) {
+    function Multiselect(callback) {
+        if (callback === void 0) {
+            callback = undefined;
+        }
         this.selectBoxes = document.querySelectorAll('select.js_multiselect');
         this.updateSelectCallback = callback;
         if(this.selectBoxes.length === 0){
